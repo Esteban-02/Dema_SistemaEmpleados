@@ -1,3 +1,5 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,6 +39,7 @@
         <h3>Sistema de empleados</h3>
     </div>
     <div class="container">
+        <fmt:setLocale value="en_US"/>
         <table class="table table-striped table-hover table-bordered align-middle">
             <thead class="table-dark text-center">
             <tr>
@@ -47,12 +50,18 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
+            <c:forEach var="empleado" items="${listaEmpleados}">
+                <tr>
+                    <th scope="row">${empleado.idEmpleado}</th>
+                    <td>${empleado.nombreEmpleado}</td>
+                    <td>${empleado.departamento}</td>
+                    <td>
+                            <fmt:setLocale value="en_US"/>
+                            <fmt:formatNumber type="currency" value="${empleado.sueldo}"/>
+
+                </tr>
+            </c:forEach>
+
             </tbody>
         </table>
 

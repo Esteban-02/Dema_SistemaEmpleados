@@ -25,7 +25,7 @@ public class IndexControlador {
         listaEmpleados.forEach((empleado -> logger.info(empleado.toString()))); //La lista se imprime solamente en sonsola
         // Compartir modelo con la vista
         // para esto se nececita el id que es "listaEmpleados" y se pasa la lista que se esta iterando
-        modelo.put("listaEmpleados", listaEmpleados);
+        modelo.put("listaEmpleados", listaEmpleados);       // el valor que esta entre "" significa la llave y el valor respesctivo
         return "index";     // Retornamos la pagina principal
     }
 
