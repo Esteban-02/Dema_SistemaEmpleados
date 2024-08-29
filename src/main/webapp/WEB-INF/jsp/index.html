@@ -35,6 +35,12 @@
                             </c:url>
                         </c:set>
                         <a href="${urlEditar}" class="btn btn-warning btn-sm me-3">Editar</a>
+                        <c:set var="urlEliminar">
+                            <c:url value="${application.contextpath}/eliminar">
+                                <c:param name="idEmpleado" value="${empleado.idEmpleado}"/>
+                            </c:url>
+                        </c:set>
+                        <a href="${urlEliminar}" class="btn btn-danger btn-sm me-3">Eliminar</a>
                     </td>
 
                 </tr>
