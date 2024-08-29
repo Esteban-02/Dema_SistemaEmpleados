@@ -11,10 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -44,6 +41,21 @@ public class IndexControlador {
         logger.info("empleado a agregar"+ empleado);
         servicioEmpleado.guardarEmpleado(empleado);
         return "redirect:/";    //Redirigue al path inicial
+    }
+
+    @RequestMapping(value = "/editar", method = RequestMethod.GET)
+    public String mostrarEdicion(@RequestParam int idEmpleado, ModelMap modelo){            // RequestParam trae el parametro que es seleccionado en la pagina, es decir el idEmpleado que se esta seleccionando en la tabla
+        Empleado empleado =servicioEmpleado.buscarEmpleadoId(idEmpleado);
+        logger.info("Empleado a editar" + empleado);
+        modelo.put("empleado", empleado);
+        return "editar"; //Mostrar la pagina de mostrar
+    }
+
+    @RequestMapping(value = "/editar", method = RequestMethod.POST)
+    public String editar(@ModelAttribute("empleadoForma") Empleado empleado){
+        logger.info("Empleado a editar: "+empleado );
+        servicioEmpleado.guardarEmpleado(empleado);
+        return "redirect:/"; // redirigimos el al index
     }
 
 
